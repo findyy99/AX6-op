@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
 fix_default_set() {
-    if [ -d "$BUILD_DIR/feeds/luci/collections/" ]; then
-        find "$BUILD_DIR/feeds/luci/collections/" -type f -name "Makefile" -exec sed -i "s/luci-theme-bootstrap/luci-theme-$THEME_SET/g" {} \;
-    fi
+    # 不再强制切换主题（argon 主题已禁用），保持默认 LuCI 主题
+    # if [ -d "$BUILD_DIR/feeds/luci/collections/" ]; then
+    #     find "$BUILD_DIR/feeds/luci/collections/" -type f -name "Makefile" -exec sed -i "s/luci-theme-bootstrap/luci-theme-$THEME_SET/g" {} \;
+    # fi
 
-    install -Dm544 "$BASE_PATH/patches/990_set_argon_primary" "$BUILD_DIR/package/base-files/files/etc/uci-defaults/990_set_argon_primary"
+    # 移除 argon 主题默认配置（主题已禁用）
+    # install -Dm544 "$BASE_PATH/patches/990_set_argon_primary" "$BUILD_DIR/package/base-files/files/etc/uci-defaults/990_set_argon_primary"
+    # 保留通用自定义设置
     install -Dm544 "$BASE_PATH/patches/991_custom_settings" "$BUILD_DIR/package/base-files/files/etc/uci-defaults/991_custom_settings"
     install -Dm544 "$BASE_PATH/patches/992_set-wifi-uci.sh" "$BUILD_DIR/package/base-files/files/etc/uci-defaults/992_set-wifi-uci.sh"
 

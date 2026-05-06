@@ -70,34 +70,23 @@ update_golang() {
 }
 
 install_small8() {
-    ./scripts/feeds install -p small8 -f xray-core xray-plugin dns2tcp dns2socks haproxy hysteria \
-        naiveproxy shadowsocks-rust sing-box v2ray-core v2ray-geodata geoview v2ray-plugin \
-        tuic-client chinadns-ng ipt2socks tcping trojan-plus simple-obfs shadowsocksr-libev \
-        v2dat mosdns luci-app-mosdns adguardhome luci-app-adguardhome ddns-go \
-        luci-app-ddns-go taskd luci-lib-xterm luci-lib-taskd luci-app-store quickstart \
-        luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest netdata luci-app-netdata \
-        lucky luci-app-lucky luci-app-openclash luci-app-homeproxy luci-app-amlogic \
-        tailscale luci-app-tailscale oaf open-app-filter luci-app-oaf easytier luci-app-easytier \
-        msd_lite luci-app-msd_lite cups luci-app-cupsd
+    # 已禁用：不再使用 small8 第三方插件源
+    echo "[skip] install_small8: third-party feed disabled"
 }
 
 install_passwall() {
-    echo "正在从官方仓库安装 luci-app-passwall..."
-    ./scripts/feeds install -p passwall -f luci-app-passwall
+    # 已禁用：不再使用 passwall 第三方插件源
+    echo "[skip] install_passwall: third-party feed disabled"
 }
 
 install_nikki() {
-    echo "正在从官方仓库安装 nikki..."
-    ./scripts/feeds install -p nikki -f nikki luci-app-nikki
+    # 已禁用：不再使用 nikki 第三方插件源
+    echo "[skip] install_nikki: third-party feed disabled"
 }
 
 install_fullconenat() {
-    if [ ! -d $BUILD_DIR/package/network/utils/fullconenat-nft ]; then
-        ./scripts/feeds install -p small8 -f fullconenat-nft
-    fi
-    if [ ! -d $BUILD_DIR/package/network/utils/fullconenat ]; then
-        ./scripts/feeds install -p small8 -f fullconenat
-    fi
+    # 已禁用：不再使用 small8 fullconenat
+    echo "[skip] install_fullconenat: third-party feed disabled"
 }
 
 check_default_settings() {

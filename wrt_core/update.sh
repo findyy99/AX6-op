@@ -38,68 +38,51 @@ source "$SCRIPT_DIR/modules/docker.sh"
 
 
 main() {
+    # === 基础源码/编译环境 ===
     clone_repo
     clean_up
     reset_feeds_conf
     update_feeds
     remove_unwanted_packages
     remove_tweaked_packages
-    update_homeproxy
+
+    # === 基础系统配置 ===
     fix_default_set
     fix_miniupnpd
-    update_golang
-    change_dnsmasq2full
-    fix_mk_def_depends
-
     update_default_lan_addr
     remove_something_nss_kmod
     update_affinity_script
-    update_ath11k_fw
-    # fix_mkpkg_format_invalid
     change_cpuusage
-    update_tcping
-    add_ax6600_led
-    set_custom_task
-    apply_passwall_tweaks
-    update_nss_pbuf_performance
     set_build_signature
     update_nss_diag
-    update_menu_location
     fix_compile_coremark
     update_dnsmasq_conf
     add_backup_info_to_sysupgrade
-    update_mosdns_deconfig
-    fix_quickstart
-    update_oaf_deconfig
-    add_timecontrol
-    add_quickfile
-    update_lucky
-    fix_rust_compile_error
-    update_smartdns
-    update_diskman
-    update_dockerman
-    set_nginx_default_config
-    update_uwsgi_limit_as
-    update_argon
-    update_nginx_ubus_module
-    check_default_settings
-    install_opkg_distfeeds
-    fix_easytier_mk
-    remove_attendedsysupgrade
+    update_script_priority
     fix_kconfig_recursive_dependency
     install_feeds
-    update_docker_stack
-    fix_cups_libcups_avahi_depends
-    fix_easytier_lua
-    update_adguardhome
-    update_script_priority
-    update_geoip
+
+    # === NSS 硬件相关 ===
+    # update_ath11k_fw: 已禁用，qosmio/openwrt-ipq 源码已含标准 ath11k-firmware
+    # update_ath11k_fw
+    update_nss_pbuf_performance
+
+    # === 基础工具/编译修复 ===
+    change_dnsmasq2full
+    fix_mk_def_depends
+    update_golang
+    check_default_settings
+    install_opkg_distfeeds
+    remove_attendedsysupgrade
+    fix_rust_compile_error
     fix_openssl_ktls
     fix_opkg_check
+    fix_cups_libcups_avahi_depends
+    update_nginx_ubus_module
+    update_uwsgi_limit_as
+    update_menu_location
     fix_quectel_cm
-    install_pbr_cmcc
     fix_pbr_ip_forward
-    # apply_hash_fixes
 }
 
 main "$@"
