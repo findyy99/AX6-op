@@ -207,7 +207,14 @@ apply_config
 remove_uhttpd_dependency
 
 cd "$BASE_PATH/../$BUILD_DIR"
+
+# 清理旧的内核编译产物，防止与新源码产生配置冲突
+if [ -d "build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq807x" ]; then
+    rm -rf build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq807x
+fi
+
 make defconfig
+make olddefconfig
 
 if grep -qE "^CONFIG_TARGET_x86_64=y" "$CONFIG_FILE"; then
     DISTFEEDS_PATH="$BASE_PATH/../$BUILD_DIR/package/emortal/default-settings/files/99-distfeeds.conf"
