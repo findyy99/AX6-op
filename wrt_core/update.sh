@@ -82,7 +82,8 @@ main() {
     update_uwsgi_limit_as
     update_menu_location
     fix_quectel_cm
-    fix_pbr_ip_forward
+    # fix_pbr_ip_forward: 已禁用，PBR 来自第三方 feeds，现已移除
+    # fix_pbr_ip_forward
 }
 
 main "$@"
